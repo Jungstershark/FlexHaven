@@ -22,4 +22,14 @@
     <string name="text_description_string">Description</string>
     <string name="textadd_a_photo_to_start_a_listing_ek4_string">Add a photo to start a listing</string>
     <string name="text_next_string">Next</string>
+
+
+    // Add Item Page
+    <string name="add_image_button">Add a photo to start a listing</string>
+    <string name="description_box_1_hint">Choose Category</string>
+    <string name="description_box_2_hint">Choose Condition</string>
+    <string name="description_box_3_hint">Choose Price</string>
+    <string name="deal_method_checkbox_text">Choose Location</string>
+    <string name="product_description_text">About your items</string>
+
 </resources>
