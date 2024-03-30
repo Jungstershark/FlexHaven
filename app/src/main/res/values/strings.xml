@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">FlexHaven</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="next">Next ></string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="text_meet_up_string">Meet-up</string>
+    <string name="choose_category_string">Choose Category</string>
+    <string name="choose_location_string">Choose Location</string>
+    <string name="text_category_string">Category</string>
+    <string name="text_location_string">Location</string>
+    <string name="choose_price_string">Choose Price</string>
+    <string name="text_price_string">Price</string>
+    <string name="shipping_string">Shipping</string>
+    <string name="deal_method_string">Deal method</string>
+    <string name="text_choose_condition_string">Choose Condition</string>
+    <string name="txt_condition_string">Condition</string>
+    <string name="txt_about_your_items____string">About your items...</string>
+    <string name="text_description_string">Description</string>
+    <string name="textadd_a_photo_to_start_a_listing_ek4_string">Add a photo to start a listing</string>
+    <string name="text_next_string">Next</string>
+</resources>

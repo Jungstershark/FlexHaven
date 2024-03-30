@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+
+    tools:context=".Add">
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/add_image_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/your_image_button_background"-->
+<!--        android:contentDescription="@string/add_image_button"-->
+<!--        android:scaleType="centerCrop" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/description_box_1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/description_box_1_hint"-->
+<!--        android:maxLength="200"-->
+<!--        android:inputType="text"-->
+<!--        android:padding="8dp" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/description_box_2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/description_box_2_hint"-->
+<!--        android:maxLength="200"-->
+<!--        android:inputType="text"-->
+<!--        android:padding="8dp" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/description_box_3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/description_box_3_hint"-->
+<!--        android:maxLength="200"-->
+<!--        android:inputType="text"-->
+<!--        android:padding="8dp" />-->
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/deal_method_checkbox"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/deal_method_checkbox_text" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/loginNext"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:backgroundTint="@color/my_primary"-->
+<!--        app:cornerRadius="15dp"-->
+<!--        android:text="Next >"-->
+<!--        android:textSize="20dp"/>-->
+
+</LinearLayout>
