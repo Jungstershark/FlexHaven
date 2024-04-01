@@ -1,9 +1,12 @@
 package com.example.flexhaven.helpers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
     public String userEmail;
     public String name;
-    public String category;
+    public ArrayList<String> category;
     public String condition;
     public String location;
     public String itemDescription;
@@ -14,7 +17,7 @@ public class Item {
     }
 
     // Constructor
-    public Item(String email, String itemName, String category, String condition, String price, String location, String itemDescription) {
+    public Item(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription) {
         this.userEmail = email;
         this.name = itemName;
         this.category = category;

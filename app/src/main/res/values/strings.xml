@@ -26,7 +26,7 @@
 
     // Add Item Page
     <string name="add_image_button">Add a photo to start a listing</string>
-    <string name="description_box_1_hint">Choose Category</string>
+    <string name="description_box_1_hint">Choose Category/Categories</string>
     <string name="description_box_2_hint">Choose Condition</string>
     <string name="description_box_3_hint">Choose Price</string>
     <string name="deal_method_checkbox_text">Choose Location</string>

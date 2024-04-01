@@ -1,4 +1,5 @@
 package com.example.flexhaven;
+import com.example.flexhaven.helpers.CommonData;
 import com.example.flexhaven.helpers.User;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,13 +50,6 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-    //TODO - what is outstate and what do we use here outstate
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("sessionUserEmail", emailEditText.getText().toString());
-    }
-
     private void loginUser(String email, String password) {
         DatabaseReference usersRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users");
         Query query = usersRef.orderByChild("email").equalTo(email);
@@ -67,8 +61,9 @@ public class Login extends AppCompatActivity {
                         User user = userSnapshot.getValue(User.class);
                         System.out.println(user.password);
                         if (user != null && user.password.equals(password)) {
-                            //TODO - What is outstate, find out and put it here to save it
-                            onSaveInstanceState();
+                            CommonData.getInstance().setUsername(user.fullName);
+                            CommonData.getInstance().setUserPoints(user.userPoints);
+                            CommonData.getInstance().setEmail(user.email);
                             startActivity(new Intent(Login.this, FYP.class));
                             finish();
                         } else {

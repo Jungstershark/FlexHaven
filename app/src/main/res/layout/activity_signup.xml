@@ -48,10 +48,10 @@
                     android:layout_height="30dp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameInput"
+                android:id="@+id/usernameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
+                android:hint="Your Username"
                 app:endIconDrawable="@drawable/full_name_icon"
                 app:endIconMode="custom">
 

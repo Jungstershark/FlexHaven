@@ -24,11 +24,11 @@ public class SignUp extends AppCompatActivity {
         Button loginBackButton = findViewById(R.id.loginBack);
 
         //get EditText from layout
-        TextInputLayout fullNameInputLayout = findViewById(R.id.nameInput);
+        TextInputLayout usernameInputLayout = findViewById(R.id.usernameInput);
         TextInputLayout emailInputLayout = findViewById(R.id.emailInput);
         TextInputLayout phoneInputLayout = findViewById(R.id.phoneInput);
         TextInputLayout passwordInputLayout = findViewById(R.id.passwordInput);
-        EditText fullNameEditText = fullNameInputLayout.getEditText();
+        EditText fullNameEditText = usernameInputLayout.getEditText();
         EditText emailEditText = emailInputLayout.getEditText();
         EditText phoneNumberEditText = phoneInputLayout.getEditText();
         EditText passwordEditText = passwordInputLayout.getEditText();
@@ -79,7 +79,7 @@ public class SignUp extends AppCompatActivity {
             myRef.child(userId).setValue(user).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     //just put the user into the FYP, no need to login again!
-                    Intent newActivity = new Intent(getApplicationContext(), FYP.class);
+                    Intent newActivity = new Intent(getApplicationContext(), Login.class);
                     startActivity(newActivity);
                 } else {
                     //go to sign up error page, because firebase isn't working.
