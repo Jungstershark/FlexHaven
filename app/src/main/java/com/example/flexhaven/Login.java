@@ -1,4 +1,5 @@
 package com.example.flexhaven;
+import com.example.flexhaven.helpers.CommonData;
 import com.example.flexhaven.helpers.User;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -60,6 +61,8 @@ public class Login extends AppCompatActivity {
                         User user = userSnapshot.getValue(User.class);
                         System.out.println(user.password);
                         if (user != null && user.password.equals(password)) {
+                            CommonData.getInstance().setUsername(user.fullName);
+                            CommonData.getInstance().setUserPoints(user.userPoints);
                             startActivity(new Intent(Login.this, FYP.class));
                             finish();
                         } else {

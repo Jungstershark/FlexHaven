@@ -37,18 +37,20 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/img" />
 
+        <!-- This TextView is for displaying username! -->
         <TextView
+            android:id="@+id/userNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Benjamin2641"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <!-- This TextView is for displaying user Points! -->
         <TextView
+            android:id="@+id/userPointsTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:alpha="0.7"
-            android:text="joined one year ago" />
+            android:alpha="0.7" />
 
         <TextView
             android:layout_width="wrap_content"
