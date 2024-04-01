@@ -63,6 +63,7 @@ public class Login extends AppCompatActivity {
                         if (user != null && user.password.equals(password)) {
                             CommonData.getInstance().setUsername(user.fullName);
                             CommonData.getInstance().setUserPoints(user.userPoints);
+                            CommonData.getInstance().setEmail(user.email);
                             startActivity(new Intent(Login.this, FYP.class));
                             finish();
                         } else {

@@ -3,8 +3,9 @@ package com.example.flexhaven.helpers;
 //1 class amongst all areas of the app!
 public class CommonData {
     private static CommonData instance;
-    private String username;
+    private String username, email;
     private int userPoints;
+    private String[] categories = {"Woman", "Shorts", "T-Shirts", "Jeans"};
 
     //CANNOT BE INSTANTIATED!
     private CommonData(){
@@ -26,5 +27,14 @@ public class CommonData {
     }
     public int getUserPoints(){
         return this.userPoints;
+    }
+    public String[] getCategories(){
+        return this.categories;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public String getEmail(){
+        return this.email;
     }
 }

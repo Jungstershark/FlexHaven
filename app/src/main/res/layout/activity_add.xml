@@ -74,18 +74,28 @@
                     android:layout_height="15dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/CategoryInput"
+                    android:id="@+id/categoryInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/description_box_1_hint"
-                    app:endIconDrawable="@drawable/full_name_icon"
-                    app:endIconMode="custom">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:endIconMode="none">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
+                    <AutoCompleteTextView
+                        android:id="@+id/categoryAutoCompleteTextView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:completionThreshold="1"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/categoryChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+                </com.google.android.material.chip.ChipGroup>
 
                 <!-- Spacing -->
                 <View
