@@ -13,7 +13,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Button addItemButton = findViewById(R.id.AddItem);
+        Button addItemButton = findViewById(R.id.AddItemProfile);
+        //TODO implement dynamic display here!
+        Button displayListingsButton = findViewById(R.id.DisplayListingsProfile);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
