@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#605D5D"
     tools:context=".SignUp">
 
     <RelativeLayout
@@ -19,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:cardCornerRadius="25dp"
-            android:layout_marginBottom="-20dp">
+            android:layout_marginBottom="-20dp"
+            app:cardCornerRadius="25dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,23 +32,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="Add Listing"
                     android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:textStyle="bold" />
 
                 <!-- Spacing -->
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="10dp" />
-                <Button
+
+                <ImageView
                     android:id="@+id/addImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:text="@string/add_image_button"
+                    android:background="#6C6C6C"
                     android:backgroundTint="@color/rectangle_5_color"
-                    android:textColor="@color/black"
-                    app:cornerRadius="15dp" />
+                    app:cornerRadius="15dp"
+                app:srcCompat="@drawable/add_image_view" />
 
                 <!-- Spacing -->
                 <View
@@ -63,9 +65,9 @@
                     app:endIconMode="custom">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Spacing -->
@@ -75,18 +77,18 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/categoryInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/description_box_1_hint"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     app:endIconMode="none">
 
                     <AutoCompleteTextView
                         android:id="@+id/categoryAutoCompleteTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:completionThreshold="1"/>
+                        android:completionThreshold="1"
+                        android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,8 +96,7 @@
                     android:id="@+id/categoryChipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
-                </com.google.android.material.chip.ChipGroup>
+                    android:layout_marginTop="8dp"></com.google.android.material.chip.ChipGroup>
 
                 <!-- Spacing -->
                 <View
@@ -112,9 +113,9 @@
                     app:endIconMode="custom">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Spacing -->
@@ -132,9 +133,9 @@
                     app:endIconMode="custom">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Spacing -->
@@ -153,10 +154,10 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Spacing -->
@@ -175,12 +176,11 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 <!-- Spacing -->
@@ -216,9 +216,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:backgroundTint="@color/my_primary"
-                    app:cornerRadius="15dp"
                     android:text="Next >"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp"
+                    app:cornerRadius="15dp" />
 
                 <View
                     android:layout_width="wrap_content"
