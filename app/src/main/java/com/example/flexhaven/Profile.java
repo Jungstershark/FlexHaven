@@ -18,12 +18,12 @@ public class Profile extends AppCompatActivity {
 
         //dynamically set username and user points!
         TextView usernameTextView = findViewById(R.id.userNameTextView);
-        usernameTextView.setText(CommonData.getInstance().getUsername());
+        usernameTextView.setText(CommonData.getInstance().getCurrentUser().username);
         TextView userPointsTextView = findViewById(R.id.userPointsTextView);
-        userPointsTextView.setText("User Points: " + String.valueOf(CommonData.getInstance().getUserPoints()));
+        userPointsTextView.setText("User Points: " + String.valueOf(CommonData.getInstance().getCurrentUser().userPoints));
 
         Button addItemButton = findViewById(R.id.AddItemProfile);
-        //TODO implement dynamic display here!
+        //TODO implement dynamic display with recyclerView here!
         Button displayListingsButton = findViewById(R.id.DisplayListingsProfile);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {

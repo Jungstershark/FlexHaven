@@ -6,12 +6,13 @@ import java.util.ArrayList;
 //1 class amongst all areas of the app!
 public class CommonData {
     private static CommonData instance;
-    private String username, email;
     private int userPoints;
     private String[] categories = {"Woman", "Shorts", "T-Shirts", "Jeans"};
     private String searchBar = "";
     private ArrayList<String> categoriesToSearch;
     private ArrayList<Item> itemsToDisplay;
+
+    private User currentUser;
 
     //CANNOT BE INSTANTIATED!
     private CommonData(){
@@ -22,11 +23,11 @@ public class CommonData {
         }
         return instance;
     }
-    public void setUsername(String username){
-        this.username = username;
+    public void setCurrentUser(User user){
+        this.currentUser = user;
     }
-    public String getUsername(){
-        return this.username;
+    public User getCurrentUser(){
+        return this.currentUser;
     }
     public void setUserPoints(int userPoints){
         this.userPoints = userPoints;
@@ -36,12 +37,6 @@ public class CommonData {
     }
     public String[] getCategories(){
         return this.categories;
-    }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public String getEmail(){
-        return this.email;
     }
     public void setSearchBar(String searchBar){
         this.searchBar = searchBar;

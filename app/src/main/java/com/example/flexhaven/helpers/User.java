@@ -2,14 +2,14 @@ package com.example.flexhaven.helpers;
 
 public class User {
     public int userPoints;
-    public String fullName, email, phoneNumber, password, userTier;
+    public String username, email, phoneNumber, password, userTier;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String fullName, String email, String phoneNumber, String password) {
-        this.fullName = fullName;
+    public User(String username, String email, String phoneNumber, String password) {
+        this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;

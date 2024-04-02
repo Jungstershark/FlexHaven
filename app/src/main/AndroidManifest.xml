@@ -22,9 +22,6 @@
             android:name=".Listing"
             android:exported="false" />
         <activity
-            android:name=".SignUpError"
-            android:exported="false" />
-        <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity

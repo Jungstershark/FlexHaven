@@ -72,7 +72,7 @@ public class Add extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //when button clicked, get values
-                String email = CommonData.getInstance().getEmail();
+                String email = CommonData.getInstance().getCurrentUser().email;
                 String itemName = itemNameEditText.getText().toString().trim();
                 String condition = conditionEditText.getText().toString().trim();
                 String price = priceEditText.getText().toString().trim();

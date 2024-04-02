@@ -5,16 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
-
     EditText fullNameEditText, emailEditText, phoneNumberEditText, passwordEditText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,7 @@ public class SignUp extends AppCompatActivity {
 
         Button signUpFinishedButton = findViewById(R.id.signUpFinished);
         Button loginBackButton = findViewById(R.id.loginBack);
+        CheckBox tncCheckBox = findViewById(R.id.signUpTermsAndConditions);
 
         //get EditText from layout
         TextInputLayout usernameInputLayout = findViewById(R.id.usernameInput);
@@ -36,7 +40,11 @@ public class SignUp extends AppCompatActivity {
         signUpFinishedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //you must check the checkbox
+                if (!tncCheckBox.isChecked()) {
+                    Toast.makeText(SignUp.this, "You must accept the terms and conditions to register.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //when button clicked, get values
                 String fullName = fullNameEditText.getText().toString().trim();
                 String email = emailEditText.getText().toString().trim();
@@ -56,37 +64,53 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
-    //method to handle new user input
+
+    //TODO low priority! use Firebase authentication instead to check for valid email account
+    //there can be more than 1 username (e.g. Discord) but only can have 1 unique email.
     private void saveUserDetailsToFirebase(String fullName, String email, String phoneNumber, String password){
         if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
-            // if any field is empty, go to the signup error page
-            Intent newActivity = new Intent(getApplicationContext(), SignUpError.class);
-            startActivity(newActivity);
-            return;
+            //some field empty!
+            showErrorMessage("Please fill in all fields");
         }
-        // get a reference to the Firebase Realtime Database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("Users");
-
-        // create a unique ID for each user
-        String userId = myRef.push().getKey();
-
-        // create a user object or use a HashMap to organize user details
-        User user = new User(fullName, email, phoneNumber, password);
-
-        // save the user details under their unique ID
-        if (userId != null) {
-            myRef.child(userId).setValue(user).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    //just put the user into the FYP, no need to login again!
-                    Intent newActivity = new Intent(getApplicationContext(), Login.class);
-                    startActivity(newActivity);
-                } else {
-                    //go to sign up error page, because firebase isn't working.
-                    Intent newActivity = new Intent(getApplicationContext(), SignUpError.class);
-                    startActivity(newActivity);
+        else{
+            // get a reference to the Firebase Realtime Database
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            DatabaseReference myRef = database.getReference("Users");
+            //check if email already exists! because email should be uniquex
+            myRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // email exists, display error message!
+                        showErrorMessage("Email already in use!");
+                    } else {
+                        registerNewUser(fullName, email, phoneNumber, password, myRef);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Failed to read value
+                    showErrorMessage("Error checking email. Please try again.");
                 }
             });
         }
+    }
+    private void registerNewUser(String username, String email, String phoneNumber, String password, DatabaseReference myRef){
+        String userId = myRef.push().getKey();
+        User user = new User(username, email, phoneNumber, password);
+        if (userId != null) {
+            myRef.child(userId).setValue(user).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent newActivity = new Intent(getApplicationContext(), Login.class);
+                    startActivity(newActivity);
+                } else {
+                    // something happened? show error message
+                    showErrorMessage("Registration failed. Please try again.");
+                }
+            });
+        }
+    }
+    private void showErrorMessage(String message){
+        Toast.makeText(SignUp.this, message, Toast.LENGTH_SHORT).show();
     }
 }

@@ -60,10 +60,8 @@ public class Login extends AppCompatActivity {
                     for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         User user = userSnapshot.getValue(User.class);
                         System.out.println(user.password);
-                        if (user != null && user.password.equals(password)) {
-                            CommonData.getInstance().setUsername(user.fullName);
-                            CommonData.getInstance().setUserPoints(user.userPoints);
-                            CommonData.getInstance().setEmail(user.email);
+                        if (user.password.equals(password)) {
+                            CommonData.getInstance().setCurrentUser(user);
                             startActivity(new Intent(Login.this, FYP.class));
                             finish();
                         } else {

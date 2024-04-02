@@ -1,6 +1,10 @@
 package com.example.flexhaven;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,12 +30,21 @@ public class Listing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
 
+        Button ListingHomeButton = findViewById(R.id.ListingHomeButton);
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ListingAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         generateItems();
+
+        ListingHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FYP.class));
+            }
+        });
     }
 
     private void generateItems() {
