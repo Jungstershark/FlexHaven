@@ -1,33 +1,24 @@
 package com.example.flexhaven;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.flexhaven.helpers.CommonData;
-import com.example.flexhaven.helpers.Item;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.flexhaven.helpers.User;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.flexhaven.helpers.CommonData;
+import com.example.flexhaven.helpers.Item;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Add extends AppCompatActivity {
 
@@ -92,7 +83,6 @@ public class Add extends AppCompatActivity {
             }
         });
     }
-
 
     //method to handle new user input
     private void saveItemDetailsToFirebase(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription){

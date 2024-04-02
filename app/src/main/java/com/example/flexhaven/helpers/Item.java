@@ -25,6 +25,5 @@ public class Item {
         this.price = price;
         this.location = location;
         this.itemDescription = itemDescription;
-
     }
 }

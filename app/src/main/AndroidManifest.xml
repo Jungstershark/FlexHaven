@@ -19,6 +19,9 @@
             android:name=".Add"
             android:exported="false" />
         <activity
+            android:name=".Listing"
+            android:exported="false" />
+        <activity
             android:name=".SignUpError"
             android:exported="false" />
         <activity
@@ -26,6 +29,9 @@
             android:exported="false" />
         <activity
             android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Search"
             android:exported="false" />
         <activity
             android:name=".FYP"

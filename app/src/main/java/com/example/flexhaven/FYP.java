@@ -16,6 +16,7 @@ public class FYP extends AppCompatActivity {
         setContentView(R.layout.activity_fyp);
 
         ImageButton profileButton = findViewById(R.id.profile);
+        ImageButton searchButton = findViewById(R.id.search);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +26,12 @@ public class FYP extends AppCompatActivity {
             }
         });
 
-
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newActivity = new Intent(getApplicationContext(),Search.class);
+                startActivity(newActivity);
+            }
+        });
     }
 }
