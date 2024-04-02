@@ -1,4 +1,7 @@
 package com.example.flexhaven.helpers;
+
+import java.util.ArrayList;
+
 //Singleton Design Pattern
 //1 class amongst all areas of the app!
 public class CommonData {
@@ -6,6 +9,9 @@ public class CommonData {
     private String username, email;
     private int userPoints;
     private String[] categories = {"Woman", "Shorts", "T-Shirts", "Jeans"};
+    private String searchBar = "";
+    private ArrayList<String> categoriesToSearch;
+    private ArrayList<Item> itemsToDisplay;
 
     //CANNOT BE INSTANTIATED!
     private CommonData(){
@@ -36,5 +42,23 @@ public class CommonData {
     }
     public String getEmail(){
         return this.email;
+    }
+    public void setSearchBar(String searchBar){
+        this.searchBar = searchBar;
+    }
+    public String getSearchBar(){
+        return this.searchBar;
+    }
+    public void CategoriesToSearch(ArrayList<String> categories){
+        this.categoriesToSearch = categories;
+    }
+    public ArrayList<String> getCategoriesToSearch(){
+        return this.categoriesToSearch;
+    }
+    public void itemsToDisplay(ArrayList<Item> items){
+        this.itemsToDisplay = items;
+    }
+    public ArrayList<Item> getItemsToDisplay(){
+        return this.itemsToDisplay;
     }
 }
