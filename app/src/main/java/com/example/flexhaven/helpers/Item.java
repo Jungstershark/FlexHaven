@@ -11,13 +11,14 @@ public class Item {
     public String location;
     public String itemDescription;
     public String price;
+    private String imageUrl;
 
     // Default constructor is needed for Firebase
     public Item() {
     }
 
     // Constructor
-    public Item(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription) {
+    public Item(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, String uriString) {
         this.userEmail = email;
         this.name = itemName;
         this.category = category;
@@ -25,6 +26,14 @@ public class Item {
         this.price = price;
         this.location = location;
         this.itemDescription = itemDescription;
+        this.imageUrl = uriString;
 
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
