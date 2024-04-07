@@ -71,5 +71,22 @@ public class Search extends AppCompatActivity {
                 startActivity(newActivity);
             }
         });
+
+        ImageButton homeButton = findViewById(R.id.SearchMenuFYPButton);
+        ImageButton profileButton = findViewById(R.id.SearchMenuProfileButton);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FYP.class));
+            }
+        });
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Profile.class));
+            }
+        });
     }
 }
