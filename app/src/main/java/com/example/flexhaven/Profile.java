@@ -38,8 +38,6 @@ public class Profile extends AppCompatActivity {
         userPointsTextView.setText("User Points: " + String.valueOf(CommonData.getInstance().getCurrentUser().userPoints));
 
         Button addItemButton = findViewById(R.id.AddItemProfile);
-        //TODO implement dynamic display with recyclerView here!
-        Button displayListingsButton = findViewById(R.id.DisplayListingsProfile);
 
         recyclerView = findViewById(R.id.profileRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -77,20 +77,9 @@
                 android:layout_height="50dp">
 
                 <Button
-                    android:id="@+id/DisplayListingsProfile"
-                    android:layout_width="175dp"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/my_primary"
-                    android:text="Listings"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    app:cornerRadius="15dp" />
-
-                <Button
                     android:id="@+id/AddItemProfile"
-                    android:layout_width="175dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
                     android:backgroundTint="@color/my_primary"
                     android:text="Add Item"
                     android:textSize="15dp"
@@ -120,7 +109,8 @@
                 android:id="@+id/profileRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="30dp"
+                android:paddingTop="35dp"
+                android:paddingBottom="80dp"
                 app:layout_constraintTop_toBottomOf="@id/profileInformation" />
 
         </androidx.core.widget.NestedScrollView>
