@@ -46,6 +46,7 @@ public class Add extends AppCompatActivity {
 
         Button addItemNextButton = findViewById(R.id.addItemFinished);
         imageView = findViewById(R.id.addImageButton);
+        Button addItemBackButton = findViewById(R.id.addItemBackButton);
 
         //all the preset categories
         String[] categories = CommonData.getInstance().getCategories();
@@ -114,6 +115,14 @@ public class Add extends AppCompatActivity {
                 String itemDescription = itemDescriptionEditText.getText().toString();
                 //use private method to place values into firebase
                 saveItemDetailsToFirebase(email, itemName, selectedCategoriesList, condition, price, location, itemDescription, imageUri);
+            }
+        });
+
+        addItemBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newActivity = new Intent(getApplicationContext(),Profile.class);
+                startActivity(newActivity);
             }
         });
 
