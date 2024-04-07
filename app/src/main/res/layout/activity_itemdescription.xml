@@ -310,49 +310,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#FFFF3951"
+        android:background="#EBEBEB"
         android:layout_alignParentBottom="true"
         android:padding="8dp">
 
         <!-- Search Button -->
-        <Button
+        <ImageButton
             android:id="@+id/ItemDescriptionSearchButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Search"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="4dp"
-            style="?android:attr/buttonBarButtonStyle" />
+            app:srcCompat="@drawable/menu_search_button"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <!-- Home Button -->
-        <Button
+        <ImageButton
             android:id="@+id/ItemDescriptionFYPButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Home"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            style="?android:attr/buttonBarButtonStyle" />
+            app:srcCompat="@drawable/menu_home_button"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <!-- Profile Button -->
-        <Button
+        <ImageButton
             android:id="@+id/ItemDescriptionProfileButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Profile"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginStart="4dp"
-            style="?android:attr/buttonBarButtonStyle" />
+            app:srcCompat="@drawable/menu_profile_button"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
     </LinearLayout>
 </RelativeLayout>
