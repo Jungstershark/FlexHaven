@@ -66,16 +66,13 @@ public class Listing extends AppCompatActivity {
                         }
                     }
                 }
-
                 runOnUiThread(() -> refreshRecyclerViewWithNewData(matchingItems));
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
-
     public void refreshRecyclerViewWithNewData(ArrayList<Item> newData) {
         adapter.updateItems(newData);
     }

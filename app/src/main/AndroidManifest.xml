@@ -15,6 +15,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ItemDescription"
+            android:exported="false" />
+        <activity
             android:name=".Add"
             android:exported="false" />
         <activity

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AEB0B2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="#AEB0B2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <!-- Product Image -->
+            <ImageView
+                android:id="@+id/productImageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shirt_foreground"
+                android:background="@drawable/rounded_bottom_corner_image"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!-- Back Button -->
+            <Button
+                android:id="@+id/ItemDescriptionToListings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="Back"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/productImageView"
+                app:layout_constraintTop_toTopOf="@id/productImageView" />
+
+            <!-- Product Title-->
+            <TextView
+                android:id="@+id/productTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Louis Vuitton Graphic Tee"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/productImageView"
+                app:layout_constraintStart_toStartOf="@id/productImageView"
+                app:layout_constraintTop_toBottomOf="@+id/productImageView"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"/>
+
+            <!-- Rental Price -->
+            <TextView
+                android:id="@+id/rentalPriceTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rental Price: $20"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@id/productImageView"
+                app:layout_constraintStart_toStartOf="@id/productImageView"
+                app:layout_constraintTop_toBottomOf="@+id/productTitleTextView"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"/>
+
+            <!-- Rent Now Button -->
+            <Button
+                android:id="@+id/rentNowButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rent Now"
+                android:textSize="22sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#FF3951"
+                app:layout_constraintEnd_toEndOf="@id/productImageView"
+                app:layout_constraintStart_toStartOf="@id/productImageView"
+                app:layout_constraintTop_toBottomOf="@+id/rentalPriceTextView"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Meet the Seller Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/meetTheSellerCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rentNowButton"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:paddingBottom="100dp"
+                    android:background="@drawable/rounded_border">
+
+                    <!-- Seller Image -->
+                    <ImageView
+                        android:id="@+id/sellerImageView"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/round_background"
+                        android:contentDescription="Seller Profile Picture" />
+
+
+                    <LinearLayout
+                        android:layout_width="152dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
+
+                        <!-- Seller Name -->
+                        <TextView
+                            android:id="@+id/sellerNameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="John Doe"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black" />
+
+                        <!-- Joined Date -->
+                        <TextView
+                            android:id="@+id/joinDateTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Joined: Jan 2023"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="@android:color/black" />
+
+                        <!-- Responsiveness -->
+                        <TextView
+                            android:id="@+id/responsivenessTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Responsive: High"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+
+                    <!-- Chat Button -->
+                    <Button
+                        android:id="@+id/chatButton"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#FF3951"
+                        android:text="Chat"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Reviews Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reviewsCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toBottomOf="@id/meetTheSellerCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_border"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Reviews Title -->
+                    <TextView
+                        android:id="@+id/reviewsTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Seller Reviews"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                    <!-- Rating and Number of Reviews -->
+
+                    <!-- Rating Bar -->
+                    <RatingBar
+                        android:id="@+id/reviewsRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:scaleX="0.65"
+                        android:scaleY="0.65"
+                        android:stepSize="0.5"
+                        android:progressTint="#FF3951"/>
+
+                    <!-- Number of Reviews -->
+                    <TextView
+                        android:id="@+id/numReviewsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="12 Reviews"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+
+                    <!-- User Review Cards -->
+                    <!-- Add your user review cards dynamically here -->
+                    <!-- should create for dynamic input user_review_card.xml -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        app:cardCornerRadius="30dp">
+
+                        <!-- User Name -->
+                        <TextView
+                            android:id="@+id/userNameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="Pookie Bear"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Review Text -->
+                        <TextView
+                            android:id="@+id/reviewTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="CHIPI CHIPI CHAPA CHAPA CHAPA DUBI DUBI DABA DAB MAGIC PNY DUBI DUBI BOOM BOOM BOOM BOOM"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+
+                        <!-- User Name -->
+                        <TextView
+                            android:id="@+id/userNameTextView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="Pookie Bear"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Review Text -->
+                        <TextView
+                            android:id="@+id/reviewTextView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="CHIPI CHIPI CHAPA CHAPA CHAPA DUBI DUBI DABA DAB MAGIC PNY DUBI DUBI BOOM BOOM BOOM BOOM"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <!-- Additional Info (if needed) -->
+                        <!-- Add more TextViews or other views as needed for additional info -->
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Empty Space -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintTop_toBottomOf="@id/reviewsCard" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFFF3951"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/ItemDescriptionSearchButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Search"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginEnd="4dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <!-- Home Button -->
+        <Button
+            android:id="@+id/ItemDescriptionFYPButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Home"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <!-- Profile Button -->
+        <Button
+            android:id="@+id/ItemDescriptionProfileButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Profile"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginStart="4dp"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+</RelativeLayout>
