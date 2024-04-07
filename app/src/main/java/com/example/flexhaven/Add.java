@@ -37,7 +37,6 @@ public class Add extends AppCompatActivity {
 
     public String UriString;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,10 +201,6 @@ public class Add extends AppCompatActivity {
                 });
             }
         }
-
-
-
-
 
     }
 

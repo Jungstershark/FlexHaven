@@ -76,7 +76,7 @@ public class SignUp extends AppCompatActivity {
             // get a reference to the Firebase Realtime Database
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/");
             DatabaseReference myRef = database.getReference("Users");
-            //check if email already exists! because email should be uniquex
+            //check if email already exists! because email should be unique
             myRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
