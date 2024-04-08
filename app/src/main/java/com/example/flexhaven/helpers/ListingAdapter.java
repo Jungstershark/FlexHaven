@@ -56,8 +56,8 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ListingV
         holder.itemName.setText(name);
         holder.itemCondition.setText("Condition: " + item.condition);
         holder.itemDescription.setText("Description: " + item.itemDescription);
-        holder.itemPrice.setText("Price" + item.price);
-        holder.itemLocation.setText("Location" + item.location);
+        holder.itemPrice.setText("Price: " + item.price);
+        holder.itemLocation.setText("Location: " + item.location);
 
     }
     @Override
