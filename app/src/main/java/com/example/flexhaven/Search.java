@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flexhaven.helpers.CommonData;
 import com.example.flexhaven.helpers.Item;
+import com.example.flexhaven.helpers.ListingAdapter;
+
 import com.example.flexhaven.helpers.User;
 import com.google.android.gms.common.internal.service.Common;
 import com.google.android.material.chip.Chip;
@@ -26,6 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Search extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private ListingAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +41,14 @@ public class Search extends AppCompatActivity {
         String[] categories = CommonData.getInstance().getCategories();
 
         Button searchButton = findViewById(R.id.searchItems);
+
+
+        // RECYCLER VIEW FOR GENERATING SEARCH
+        recyclerView = findViewById(R.id.searchRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ListingAdapter(this, new ArrayList<>());
+        recyclerView.setAdapter(adapter);
+
 
         // Keep track of what categories have been selected (no duplicates :(( )
         ArrayList<String> selectedCategoriesList = new ArrayList<>();
@@ -63,12 +78,17 @@ public class Search extends AppCompatActivity {
             autoCompleteTextView.clearFocus();
         });
 
+
+
+
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonData.getInstance().CategoriesToSearch(selectedCategoriesList);
-                Intent newActivity = new Intent(getApplicationContext(),Listing.class);
-                startActivity(newActivity);
+//                Intent newActivity = new Intent(getApplicationContext(),Listing.class);
+//                startActivity(newActivity);
+                generateItems();
             }
         });
 
@@ -88,5 +108,35 @@ public class Search extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Profile.class));
             }
         });
+    }
+
+    private void generateItems() {
+        ArrayList<String> categoriesToSearch = CommonData.getInstance().getCategoriesToSearch();
+        DatabaseReference itemsRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Items");
+
+        itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Item> matchingItems = new ArrayList<>();
+                for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
+                    Item item = itemSnapshot.getValue(Item.class);
+                    if (item != null && item.category != null && !item.category.isEmpty()) {
+                        for (String category : item.category) {
+                            if (categoriesToSearch.contains(category)) {
+                                matchingItems.add(item);
+                                break;
+                            }
+                        }
+                    }
+                }
+                runOnUiThread(() -> refreshRecyclerViewWithNewData(matchingItems));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+    public void refreshRecyclerViewWithNewData(ArrayList<Item> newData) {
+        adapter.updateItems(newData);
     }
 }
