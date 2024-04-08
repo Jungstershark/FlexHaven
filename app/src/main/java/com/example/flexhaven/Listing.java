@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,16 +31,25 @@ public class Listing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
 
-        Button ListingHomeButton = findViewById(R.id.ListingHomeButton);
+        // Retrieve the category argument from the previous activity
+        Intent intent = getIntent();
+        String category = intent.getStringExtra("CATEGORY");
+
+        TextView pageTypeTitle = findViewById(R.id.PageType);
+        if (category!=null){
+            pageTypeTitle.setText(category);
+        }
+
+        Button BackFYPButton = findViewById(R.id.BackFYPButton);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ListingAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
-        generateItems();
+        generateItems(category);
 
-        ListingHomeButton.setOnClickListener(new View.OnClickListener() {
+        BackFYPButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FYP.class));
@@ -47,8 +57,7 @@ public class Listing extends AppCompatActivity {
         });
     }
 
-    private void generateItems() {
-        ArrayList<String> categoriesToSearch = CommonData.getInstance().getCategoriesToSearch();
+    private void generateItems(String category) {
         DatabaseReference itemsRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Items");
 
         itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -57,13 +66,8 @@ public class Listing extends AppCompatActivity {
                 ArrayList<Item> matchingItems = new ArrayList<>();
                 for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                     Item item = itemSnapshot.getValue(Item.class);
-                    if (item != null && item.category != null && !item.category.isEmpty()) {
-                        for (String category : item.category) {
-                            if (categoriesToSearch.contains(category)) {
-                                matchingItems.add(item);
-                                break;
-                            }
-                        }
+                    if (item != null && item.category != null && !item.category.isEmpty() && item.category.contains(category)) {
+                        matchingItems.add(item);
                     }
                 }
                 runOnUiThread(() -> refreshRecyclerViewWithNewData(matchingItems));
@@ -73,8 +77,8 @@ public class Listing extends AppCompatActivity {
             }
         });
     }
+
     public void refreshRecyclerViewWithNewData(ArrayList<Item> newData) {
         adapter.updateItems(newData);
     }
 }
-
