@@ -2,9 +2,11 @@ package com.example.flexhaven.helpers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flexhaven.ItemDescription;
 import com.example.flexhaven.R;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -41,9 +45,20 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ListingV
     public void onBindViewHolder(@NonNull ListingViewHolder holder, int position) {
 
         Item item = items.get(position);
-        holder.itemName.setText(item.name);
-        holder.itemDescription.setText(item.itemDescription);
-        holder.itemImageUrl.setText(item.getImageUrl());
+        String url = item.getImageUrl();
+        Glide.with(context)
+                .load(url)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(holder.itemProductImage);
+
+        String name = item.name;
+        holder.itemName.setText(name);
+        holder.itemCondition.setText("Condition: " + item.condition);
+        holder.itemDescription.setText("Description: " + item.itemDescription);
+        holder.itemPrice.setText("Price" + item.price);
+        holder.itemLocation.setText("Location" + item.location);
+
     }
     @Override
     public int getItemCount() {
@@ -51,15 +66,20 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ListingV
     }
     static class ListingViewHolder extends RecyclerView.ViewHolder {
         final TextView itemName;
+        final TextView itemCondition;
+        final TextView itemPrice;
         final TextView itemDescription;
-        final TextView itemImageUrl;
+        final TextView itemLocation;
+        final ImageView itemProductImage;
 
         ListingViewHolder(View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.textItemName);
-            itemDescription = itemView.findViewById(R.id.textItemDescription);
-            itemImageUrl = itemView.findViewById(R.id.ListingsItemURL);
-            //TODO add images
+            itemName = (TextView) itemView.findViewById(R.id.textItemName);
+            itemCondition = (TextView) itemView.findViewById(R.id.textItemCondition);
+            itemPrice = (TextView) itemView.findViewById(R.id.textItemPrice);
+            itemDescription = (TextView) itemView.findViewById(R.id.textItemDescription);
+            itemLocation = (TextView) itemView.findViewById(R.id.textItemLocation);
+            itemProductImage = (ImageView) itemView.findViewById(R.id.itemProductImage);
 
             //make it clickable!
             itemView.setOnClickListener(new View.OnClickListener() {
