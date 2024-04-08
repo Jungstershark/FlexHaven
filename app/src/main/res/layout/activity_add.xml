@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,246 +7,282 @@
     android:background="#605D5D"
     tools:context=".SignUp">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/my_primary" />
+            android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-20dp"
-            app:cardCornerRadius="25dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/my_primary" />
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="28dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Add Listing"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp" />
-
-                <ImageView
-                    android:id="@+id/addImageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="#6C6C6C"
-                    android:backgroundTint="@color/rectangle_5_color"
-                    app:cornerRadius="15dp"
-                app:srcCompat="@drawable/add_image_view" />
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ItemNameInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name of Item"
-                    app:endIconDrawable="@drawable/full_name_icon"
-                    app:endIconMode="custom">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/categoryInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/description_box_1_hint"
-                    app:endIconMode="none">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/categoryAutoCompleteTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:completionThreshold="1"
-                        android:inputType="none" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/categoryChipGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"></com.google.android.material.chip.ChipGroup>
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <!-- Valid Email Field -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ConditionInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/description_box_2_hint"
-                    app:endIconDrawable="@drawable/baseline_email_24"
-                    app:endIconMode="custom">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <!-- Phone Number Field -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/PriceInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/description_box_3_hint"
-                    app:endIconDrawable="@drawable/baseline_add_call_24"
-                    app:endIconMode="custom">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <!-- Strong Password Field -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/LocationInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/deal_method_checkbox_text"
-                    app:endIconDrawable="@drawable/baseline_key_24"
-                    app:endIconMode="custom"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <!-- Strong Password Field -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ItemDescriptionInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/product_description_text"
-                    app:endIconDrawable="@drawable/baseline_key_24"
-                    app:endIconMode="custom"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <!-- Spacing -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"
-                    android:text="Deal Method"
-                    android:textAlignment="center"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-
-                <RadioButton
-                    android:id="@+id/MeetupButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Meet-up" />
-
-                <RadioButton
-                    android:id="@+id/ShippingButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Shipping" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-20dp"
+                app:cardCornerRadius="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="28dp">
 
-                    <Button
-                        android:id="@+id/addItemBackButton"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/my_primary"
-                        android:text="&lt; Back"
-                        android:textSize="20sp"
-                        app:cornerRadius="15dp" />
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Add Listing"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="0dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/addImageButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:background="#EBEBEB"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/add_image_view" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ItemNameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name of Item"
+                        app:endIconDrawable="@drawable/full_name_icon"
+                        app:endIconMode="custom">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <View
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
-                    <Button
-                        android:id="@+id/addItemFinished"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/my_primary"
-                        android:text="Next >"
-                        android:textSize="20sp"
-                        app:cornerRadius="15dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/searchCategoryCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardBackgroundColor="#F3F3F3"
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/categoryInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:hint="@string/description_box_1_hint"
+                            app:endIconMode="none"
+                            app:boxBackgroundMode="none">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/categoryAutoCompleteTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:completionThreshold="1"
+                                android:paddingBottom="7dp"
+                                android:gravity="center"
+                                android:inputType="none" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/categoryChipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"></com.google.android.material.chip.ChipGroup>
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <!-- Valid Email Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ConditionInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/description_box_2_hint"
+                        app:endIconDrawable="@drawable/baseline_email_24"
+                        app:endIconMode="custom">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <!-- Phone Number Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/PriceInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/description_box_3_hint"
+                        app:endIconDrawable="@drawable/baseline_add_call_24"
+                        app:endIconMode="custom">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <!-- Strong Password Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/LocationInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/deal_method_checkbox_text"
+                        app:endIconDrawable="@drawable/baseline_key_24"
+                        app:endIconMode="custom"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <!-- Strong Password Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ItemDescriptionInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_description_text"
+                        app:endIconDrawable="@drawable/baseline_key_24"
+                        app:endIconMode="custom"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:text="Deal Method"
+                        android:textAlignment="center"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+
+                    <RadioButton
+                        android:id="@+id/MeetupButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Meet-up" />
+
+                    <RadioButton
+                        android:id="@+id/ShippingButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Shipping" />
+
+
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp" />
 
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="15dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
+        <Button
+            android:id="@+id/addItemBackButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/my_primary"
+            android:text="&lt; Back"
+            android:textSize="20sp"
+            app:cornerRadius="15dp" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-</ScrollView>
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
 
+        <Button
+            android:id="@+id/addItemFinished"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/my_primary"
+            android:text="Next >"
+            android:textSize="20sp"
+            app:cornerRadius="15dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
