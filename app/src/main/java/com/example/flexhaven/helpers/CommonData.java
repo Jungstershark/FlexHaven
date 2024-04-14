@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CommonData {
     private static CommonData instance;
     private int userPoints;
-    private String[] categories = {"Woman", "Shorts", "T-Shirts", "Jeans"};
+    private String[] categories = {"Woman", "Men", "Accessories", "Electronics", "Shorts", "T-Shirts", "Jeans"};
     private String searchBar = "";
     private ArrayList<String> categoriesToSearch;
     private ArrayList<Item> itemsToDisplay;
@@ -55,5 +55,10 @@ public class CommonData {
     }
     public ArrayList<Item> getItemsToDisplay(){
         return this.itemsToDisplay;
+    }
+
+    // Method to reset the CommonData singleton instance
+    public static void resetInstance() {
+        instance = null;
     }
 }
