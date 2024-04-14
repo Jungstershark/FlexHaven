@@ -20,8 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 //this generates this listings!
+class ItemComparator implements Comparator<Item> {
+    @Override
+    public int compare(Item item1, Item item2) {
+        return Integer.compare(item2.getOwner().userPoints, item1.getOwner().userPoints);
+    }
+}
 public class Listing extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListingAdapter adapter;
@@ -31,13 +39,13 @@ public class Listing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
 
-        // Retrieve the category argument from the previous activity
         Intent intent = getIntent();
-        String category = intent.getStringExtra("CATEGORY");
+        ArrayList<String> categories = intent.getStringArrayListExtra("CATEGORIES");
+        String title = intent.getStringExtra("TITLE");
 
         TextView pageTypeTitle = findViewById(R.id.PageType);
-        if (category!=null){
-            pageTypeTitle.setText(category);
+        if (categories != null) {
+            pageTypeTitle.setText(title);
         }
 
         Button BackFYPButton = findViewById(R.id.BackFYPButton);
@@ -47,7 +55,7 @@ public class Listing extends AppCompatActivity {
         adapter = new ListingAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
-        generateItems(category);
+        generateItems(categories);
 
         BackFYPButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,25 +65,40 @@ public class Listing extends AppCompatActivity {
         });
     }
 
-    private void generateItems(String category) {
+    private void generateItems(ArrayList<String> categories) {
         DatabaseReference itemsRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Items");
 
         itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Item> matchingItems = new ArrayList<>();
+                ArrayList<Item> allItems = new ArrayList<>();
                 for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                     Item item = itemSnapshot.getValue(Item.class);
-                    if (item != null && item.category != null && !item.category.isEmpty() && item.category.contains(category)) {
-                        matchingItems.add(item);
+                    if (item != null && item.category != null && !item.category.isEmpty() && containsAny(item.category, categories)) {
+                        allItems.add(item);
                     }
                 }
-                runOnUiThread(() -> refreshRecyclerViewWithNewData(matchingItems));
+
+                PriorityQueue<Item> priorityQueue = new PriorityQueue<>(new ItemComparator());
+                priorityQueue.addAll(allItems);
+
+                ArrayList<Item> sortedItems = new ArrayList<>(priorityQueue);
+                runOnUiThread(() -> refreshRecyclerViewWithNewData(sortedItems));
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    private boolean containsAny(ArrayList<String> list1, ArrayList<String> list2) {
+        for (String item : list1) {
+            if (list2.contains(item)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void refreshRecyclerViewWithNewData(ArrayList<Item> newData) {
