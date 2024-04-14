@@ -11,7 +11,6 @@ public class CommonData {
     private String searchBar = "";
     private ArrayList<String> categoriesToSearch;
     private ArrayList<Item> itemsToDisplay;
-
     private User currentUser;
 
     //CANNOT BE INSTANTIATED!
