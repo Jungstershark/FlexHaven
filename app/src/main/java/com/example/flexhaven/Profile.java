@@ -1,41 +1,103 @@
 package com.example.flexhaven;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.flexhaven.helpers.CommonData;
 import com.example.flexhaven.helpers.Item;
 import com.example.flexhaven.helpers.ListingAdapter;
+import com.example.flexhaven.helpers.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.checkerframework.checker.units.qual.Current;
+
 import java.util.ArrayList;
 
-public class Profile extends AppCompatActivity {
+public class  Profile extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ListingAdapter adapter;
+    private Drawable tierIcon;
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         //dynamically set username and user points!
+        User currentUser = CommonData.getInstance().getCurrentUser();
+
+        // Get profile picture using URL from currentUser user object
+        String profileUrl = currentUser.imageUrl;
+        ImageView profileImage = findViewById(R.id.userProfilePictureImageView);
+        if (!profileUrl.isEmpty()) {
+            // Load image using Glide if profileUrl is not empty
+            Glide.with(this)
+                    .load(profileUrl)
+                    .centerCrop()
+                    .placeholder(R.drawable.add_image_view)
+                    .into(profileImage);
+        } else {
+            // If profileUrl is empty, set the ImageView to display a placeholder image directly
+            profileImage.setImageResource(R.drawable.add_image_view);
+        }
+
+
+        // Get username from currentUser user object
         TextView usernameTextView = findViewById(R.id.userNameTextView);
-        usernameTextView.setText(CommonData.getInstance().getCurrentUser().username);
-        TextView userPointsTextView = findViewById(R.id.userPointsTextView);
-        userPointsTextView.setText("User Points: " + String.valueOf(CommonData.getInstance().getCurrentUser().userPoints));
+        if (currentUser.username!= null){
+            usernameTextView.setText(currentUser.username);
+        }
+
+        // Get user Tier and user Points from currentUser user object
+        TextView userTierPoints = findViewById(R.id.userTierPointsTextView);
+        int currentUserPoints = currentUser.userPoints;
+        if (currentUser!=null){
+            userTierPoints.setText(currentUserPoints + " Points");
+        }
+
+        if (currentUser != null) {
+            currentUser.computeTier();
+            switch (currentUser.userTier) {
+                case "Bronze":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
+                    break;
+                case "Silver":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_silver_icon);
+                    break;
+                case "Gold":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_gold_icon);
+                    break;
+                case "Platinum":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_platinum_icon);
+                    break;
+                default:
+                    tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
+            }
+            userTierPoints.setCompoundDrawablesRelativeWithIntrinsicBounds(tierIcon, null, null, null);
+        }
+
+        // Get user email from currentUser user object
+        TextView userEmail = findViewById(R.id.userEmailTextView);
+        if (currentUser!=null){
+            userEmail.setText(currentUser.email);
+        }
 
         Button addItemButton = findViewById(R.id.AddItemProfile);
 
@@ -70,22 +132,42 @@ public class Profile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Search.class));
             }
         });
+
+        Button logOutButton = findViewById(R.id.LogoutProfile);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonData.resetInstance();
+                startActivity(new Intent(getApplicationContext(), Login.class));
+            }
+        });
     }
 
     private void generateItems() {
+        // Get the reference to the Firebase Realtime Database
         DatabaseReference itemsRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Items");
 
+        // Add a listener to retrieve data from the "Items" node
         itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Item> allItems = new ArrayList<>();
+                ArrayList<Item> userItems = new ArrayList<>();
+                String currentUserEmail = CommonData.getInstance().getCurrentUser().email;
+
+                // Iterate through each item in the dataSnapshot
                 for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
+                    // Get the item object
                     Item item = itemSnapshot.getValue(Item.class);
-                    if (item != null) {
-                        allItems.add(item);
+
+                    // Check if the item owner's email matches the current user's email
+                    if (item != null && item.getOwner().email.equals(currentUserEmail)) {
+                        // Add the item to the list of user items
+                        userItems.add(item);
                     }
                 }
-                runOnUiThread(() -> refreshRecyclerViewWithNewData(allItems));
+
+                // Update the RecyclerView with the filtered list of user items
+                runOnUiThread(() -> refreshRecyclerViewWithNewData(userItems));
             }
 
             @Override
@@ -94,6 +176,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
+
     public void refreshRecyclerViewWithNewData(ArrayList<Item> newData) {
         adapter.updateItems(newData);
     }
