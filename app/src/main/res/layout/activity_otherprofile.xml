@@ -1,0 +1,192 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#EBEBEB">
+
+    <!-- Primary Color Box -->
+    <View
+        android:id="@+id/primaryColorBox"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/my_primary" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profileCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:background="@color/my_primary">
+
+        <LinearLayout
+            android:id="@+id/profileInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FAF8F8">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/userProfilePictureCardView"
+                android:layout_width="87dp"
+                android:layout_height="87dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="44dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/userProfilePictureImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userTierPointsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:drawableStart="@drawable/add_image_view"
+                android:drawablePadding="8dp"
+                android:text="xxx Points"
+                android:layout_marginTop="3dp" />
+
+
+            <TextView
+                android:id="@+id/userEmailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:drawableStart="@drawable/email"
+                android:drawablePadding="8dp"
+                android:text="verified"
+                android:layout_marginTop="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:drawableStart="@drawable/thumbs_up"
+                android:drawablePadding="8dp"
+                android:text="very responsive"
+                android:layout_marginTop="3dp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Button
+                    android:id="@+id/AddItemProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/my_primary"
+                    android:text="Add Item"
+                    android:textSize="15dp"
+                    app:cornerRadius="15dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/nestedCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileCardView"
+        android:layout_marginTop="-20dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="0dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EBEBEB">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profileRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="35dp"
+                android:paddingBottom="80dp"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="#000000">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="#FFFFFF" />
+
+        <!-- Bottom Navigation Bar -->
+        <LinearLayout
+            android:id="@+id/bottomNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#EBEBEB"
+            android:padding="8dp">
+
+                <!-- Search Button -->
+                <ImageButton
+                    android:id="@+id/ProfileMenuSearchButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/menu_search_button"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+                <!-- Home Button -->
+                <ImageButton
+                    android:id="@+id/ProfileMenuFYPButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/menu_home_button"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+                <!-- Profile Button -->
+                <ImageButton
+                    android:id="@+id/ProfileMenuProfileButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/menu_profile_button"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
