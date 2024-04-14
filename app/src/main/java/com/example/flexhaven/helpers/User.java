@@ -1,23 +1,31 @@
 package com.example.flexhaven.helpers;
 
-public class User {
-    public int userPoints;
-    public String username, email, phoneNumber, password, userTier;
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class User implements Serializable {
+    public int userPoints, sellerPoints;
+    public BigDecimal userWallet;
+    public String username, email, phoneNumber, password, userTier, imageUrl, sellerTier;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String username, String email, String phoneNumber, String password) {
+    public User(String username, String email, String phoneNumber, String password, String imageUrl) {
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.userPoints = 0;
-        this.userTier = "";
+        this.userTier = " ";
+        this.sellerPoints = 0;
+        this.sellerTier = " ";
+        this.imageUrl = imageUrl;
+        this.userWallet = new BigDecimal(0);
     }
 
-    private void computeTier(){
+    public void computeTier(){
         if (this.userPoints<250){
             this.userTier = "Bronze";
         }
