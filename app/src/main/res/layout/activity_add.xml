@@ -125,7 +125,9 @@
                         android:id="@+id/categoryChipGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"></com.google.android.material.chip.ChipGroup>
+                        android:layout_marginTop="8dp">
+
+                    </com.google.android.material.chip.ChipGroup>
 
                     <!-- Spacing -->
                     <View
@@ -172,20 +174,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="20dp" />
 
-                    <!-- Strong Password Field -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/LocationInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/deal_method_checkbox_text"
                         app:endIconDrawable="@drawable/baseline_key_24"
-                        app:endIconMode="custom"
-                        app:passwordToggleEnabled="true">
+                        app:endIconMode="custom">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,21 +193,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="20dp" />
 
-                    <!-- Strong Password Field -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/ItemDescriptionInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/product_description_text"
                         app:endIconDrawable="@drawable/baseline_key_24"
-                        app:endIconMode="custom"
-                        app:passwordToggleEnabled="true">
+                        app:endIconMode="custom">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-                            android:maxLines="1" />
+                            android:maxLines="10" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
