@@ -23,7 +23,7 @@
         android:background="@color/my_primary">
 
         <LinearLayout
-            android:id="@+id/profileInformation"
+            android:id="@+id/otherProfileInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -31,7 +31,7 @@
             android:background="#FAF8F8">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/userProfilePictureCardView"
+                android:id="@+id/otherProfilePictureCardView"
                 android:layout_width="87dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
@@ -39,7 +39,7 @@
                 app:cardElevation="4dp">
 
                 <ImageView
-                    android:id="@+id/userProfilePictureImageView"
+                    android:id="@+id/otherProfilePictureImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -47,8 +47,8 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-    <TextView
-                android:id="@+id/userNameTextView"
+            <TextView
+                android:id="@+id/otherNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"
@@ -57,7 +57,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/userTierPointsTextView"
+                android:id="@+id/otherTierPointsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
@@ -68,7 +68,7 @@
 
 
             <TextView
-                android:id="@+id/userEmailTextView"
+                android:id="@+id/otherEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
@@ -88,22 +88,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="20dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <Button
-                    android:id="@+id/AddItemProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/my_primary"
-                    android:text="Add Item"
-                    android:textSize="15dp"
-                    app:cornerRadius="15dp" />
-
-            </RelativeLayout>
+                android:layout_height="10dp" />
 
         </LinearLayout>
 
