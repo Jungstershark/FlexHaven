@@ -17,7 +17,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.flexhaven.helpers.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -34,14 +36,16 @@ public class Add extends AppCompatActivity {
     private ImageView imageView;
     private Uri imageUri;
     private boolean uploadImageStatus = false;
-
     public String UriString;
+    public User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        // Get current user object
+        currentUser = CommonData.getInstance().getCurrentUser();
 
         Button addItemNextButton = findViewById(R.id.addItemFinished);
         imageView = findViewById(R.id.addImageButton);
@@ -143,14 +147,6 @@ public class Add extends AppCompatActivity {
     //method to handle new user input
     private void saveItemDetailsToFirebase(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, Uri imageUri){
 
-
-        // TODO 2 - We could have a page if item description is empty
-//        if (category.isEmpty() || condition.isEmpty() || price.isEmpty() || location.isEmpty() || itemDescription.isEmpty()) {
-//            // if any field is empty, go to the signup error page
-//            Intent newActivity = new Intent(getApplicationContext(), SignUpError.class);
-//            startActivity(newActivity);
-//            return;
-//        }
         // get a reference to the Firebase Realtime Database
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("Items");
@@ -169,47 +165,53 @@ public class Add extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             UriString = uri.toString();
-                            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, UriString);
+                            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, UriString, currentUser);
 
                             // save the user details under their unique ID
                             if (userId != null) {
                                 myRef.child(userId).setValue(item).addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
+                                        // Item added successfully
+                                        Toast.makeText(Add.this, "Item added successfully", Toast.LENGTH_SHORT).show();
+
                                         //just put the user into the FYP, no need to login again!
                                         Intent newActivity = new Intent(getApplicationContext(), Profile.class);
                                         startActivity(newActivity);
                                     }
-                    //                else {
-                    //                    //go to sign up error page, because firebase isn't working.
-                    //                    Intent newActivity = new Intent(getApplicationContext(), SignUpError.class);
-                    //                    startActivity(newActivity);
-                    //                }
-                                                    });
-                                                }
+                                    else {
+                                        // An error occurred while adding the item
+                                        Toast.makeText(Add.this, "Error adding item. Please try again later.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     });
                 }
             });
         }
         else {
-            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, "");
+            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, "", currentUser);
 
             // save the user details under their unique ID
             if (userId != null) {
                 myRef.child(userId).setValue(item).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        // Item added successfully
+                        Toast.makeText(Add.this, "Item added successfully", Toast.LENGTH_SHORT).show();
+
                         //just put the user into the FYP, no need to login again!
                         Intent newActivity = new Intent(getApplicationContext(), Profile.class);
                         startActivity(newActivity);
                     }
-//                else {
-//                    //go to sign up error page, because firebase isn't working.
-//                    Intent newActivity = new Intent(getApplicationContext(), SignUpError.class);
-//                    startActivity(newActivity);
-//                }
+                    else {
+                        // An error occurred while adding the item
+                        Toast.makeText(Add.this, "Error adding item. Please try again later.", Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
         }
+
+
 
     }
 
@@ -220,5 +222,4 @@ public class Add extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(mUri));
 
     }
-
-        }
+}
