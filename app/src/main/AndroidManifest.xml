@@ -34,6 +34,9 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
+            android:name=".OtherProfile"
+            android:exported="false" />
+        <activity
             android:name=".Search"
             android:exported="false" />
         <activity
