@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class FYP extends AppCompatActivity {
 
     @Override
@@ -29,10 +31,12 @@ public class FYP extends AppCompatActivity {
         womanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String category = "Woman";
+                ArrayList<String> categories = new ArrayList<>();
+                categories.add("Woman");
 
-                Intent newActivity = new Intent(getApplicationContext(),Listing.class);
-                newActivity.putExtra("CATEGORY",category);
+                Intent newActivity = new Intent(getApplicationContext(), Listing.class);
+                newActivity.putStringArrayListExtra("CATEGORIES", categories);
+                newActivity.putExtra("TITLE", "Woman");
                 startActivity(newActivity);
             }
         });
@@ -41,24 +45,32 @@ public class FYP extends AppCompatActivity {
         menButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String category = "Shorts";
+                ArrayList<String> categories = new ArrayList<>();
+                categories.add("Men");
 
-                Intent newActivity = new Intent(getApplicationContext(),Listing.class);
-                newActivity.putExtra("CATEGORY",category);
+                Intent newActivity = new Intent(getApplicationContext(), Listing.class);
+                newActivity.putStringArrayListExtra("CATEGORIES", categories);
+                newActivity.putExtra("TITLE", "Men");
                 startActivity(newActivity);
             }
         });
+
         ImageButton accessoriesButton = findViewById(R.id.accessoriesButton);
         accessoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String category = "Jeans";
+                ArrayList<String> categories = new ArrayList<>();
+                categories.add("Jeans");
+                categories.add("Shorts");
+                categories.add("T-Shirt");
 
-                Intent newActivity = new Intent(getApplicationContext(),Listing.class);
-                newActivity.putExtra("CATEGORY",category);
+                Intent newActivity = new Intent(getApplicationContext(), Listing.class);
+                newActivity.putStringArrayListExtra("CATEGORIES", categories);
+                newActivity.putExtra("TITLE", "Accessories");
                 startActivity(newActivity);
             }
         });
+
 
 
 
