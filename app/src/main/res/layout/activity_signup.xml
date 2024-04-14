@@ -135,8 +135,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Strong Password"
                 app:endIconDrawable="@drawable/baseline_key_24"
-                app:endIconMode="custom"
-                app:passwordToggleEnabled="true">
+                app:endIconMode="custom">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:maxLines="1"
