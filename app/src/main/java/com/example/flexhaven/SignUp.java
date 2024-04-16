@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -104,6 +105,7 @@ public class SignUp extends AppCompatActivity {
     //TODO low priority! use Firebase authentication instead to check for valid email account
     //there can be more than 1 username (e.g. Discord) but only can have 1 unique email.
     private void saveUserDetailsToFirebase(String fullName, String email, String phoneNumber, String password) {
+        Log.d("SignUpActivity", "saveUserDetailsToFirebase: Starting save operation");
         if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
             //some field empty!
             showErrorMessage("Please fill in all fields");
@@ -120,6 +122,7 @@ public class SignUp extends AppCompatActivity {
                         // email exists, display error message!
                         showErrorMessage("Email already in use!");
                     } else {
+                        Log.d("SignUpActivity", "saveUserDetailsToFirebase: Email is unique, proceeding to register");
                         // If an image is uploaded, save it to Firebase Storage
                         if (uploadImageStatus && imageUri != null) {
                             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -134,6 +137,7 @@ public class SignUp extends AppCompatActivity {
                                 showErrorMessage("Error uploading image. Please try again.");
                             });
                         } else {
+                            Log.d("SignUpActivity", "saveUserDetailsToFirebase: No image uploaded, registering without image URL");
                             // If no image is uploaded, register the user without image URL
                             registerNewUser(fullName, email, phoneNumber, password, "", myRef);
                         }
@@ -152,6 +156,8 @@ public class SignUp extends AppCompatActivity {
     private void registerNewUser(String username, String email, String phoneNumber, String password, String imageUrl, DatabaseReference myRef) {
         String userId = myRef.push().getKey();
         User user = new User(username, email, phoneNumber, password, imageUrl);
+        user.computeSellerTier();
+        user.computeTier();
         if (userId != null) {
             myRef.child(userId).setValue(user).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
