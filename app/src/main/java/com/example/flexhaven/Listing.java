@@ -74,7 +74,7 @@ public class Listing extends AppCompatActivity {
                 ArrayList<Item> allItems = new ArrayList<>();
                 for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                     Item item = itemSnapshot.getValue(Item.class);
-                    if (item != null && item.category != null && !item.category.isEmpty() && containsAny(item.category, categories)) {
+                    if (item != null && item.category != null && !item.category.isEmpty() && containsAny(item.category, categories) && item.getRentalStatus().rentalStatus != 1) {
                         allItems.add(item);
                     }
                 }
