@@ -26,73 +26,196 @@
             android:id="@+id/profileInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#FAF8F8">
+            android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/userProfilePictureCardView"
-                android:layout_width="87dp"
-                android:layout_height="87dp"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="44dp"
-                app:cardElevation="4dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="#FAF8F8">
 
-                <ImageView
-                    android:id="@+id/userProfilePictureImageView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/userProfilePictureCardView"
+                        android:layout_width="87dp"
+                        android:layout_height="87dp"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="44dp"
+                        app:cardElevation="4dp">
+
+                        <ImageView
+                            android:id="@+id/userProfilePictureImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <Button
+                                android:id="@+id/LogoutProfile"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:backgroundTint="@color/LogoutGray"
+                                android:text="LogOut"
+                                android:textSize="15dp"
+                                app:cornerRadius="15dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/userTierPointsTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:drawableEnd="@drawable/add_image_view"
+                            android:drawablePadding="8dp"
+                            android:text="Buyer: xxx Points  |  Bronze"
+                            android:gravity="right"
+                            android:layout_marginTop="3dp"/>
+
+                        <TextView
+                            android:id="@+id/sellerTierPointsTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:drawableEnd="@drawable/add_image_view"
+                            android:drawablePadding="8dp"
+                            android:text="Seller: xxx Points  |  Bronze"
+                            android:gravity="right"
+                            android:layout_marginTop="3dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/userNameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Username"
+                            android:layout_marginTop="8dp"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/userEmailTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:drawableStart="@drawable/email"
+                            android:drawablePadding="8dp"
+                            android:text="verified"
+                            android:layout_marginTop="3dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:drawableStart="@drawable/thumbs_up"
+                            android:drawablePadding="8dp"
+                            android:text="very responsive"
+                            android:layout_marginTop="3dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/Wallet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Wallet"
+                            android:gravity="center_horizontal"
+                            android:textColor="#000000"
+                            android:alpha="0.7"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/WalletValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="$XX"
+                            android:gravity="center_horizontal"
+                            android:textColor="#000000"
+                            android:alpha="0.7"
+                            android:layout_marginTop="8dp"
+                            android:textSize="18sp" />
 
 
-    <TextView
-                android:id="@+id/userNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:layout_marginTop="8dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/userTierPointsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:drawableStart="@drawable/add_image_view"
-                android:drawablePadding="8dp"
-                android:text="xxx Points"
-                android:layout_marginTop="3dp" />
+            </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/userEmailTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:drawableStart="@drawable/email"
-                android:drawablePadding="8dp"
-                android:text="verified"
-                android:layout_marginTop="3dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:drawableStart="@drawable/thumbs_up"
-                android:drawablePadding="8dp"
-                android:text="very responsive"
-                android:layout_marginTop="3dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
+                android:layout_height="wrap_content"
+                android:background="#FAF8F8"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/AmountToAddInput"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="0.7"
+                        android:layout_gravity="center_vertical"
+                        android:hint="Amount to Add"
+                        android:textSize="15sp"
+                        android:backgroundTint="#000000"
+                        android:maxLines="1" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <Button
+                        android:id="@+id/AddWalletValue"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="@color/my_primary"
+                        android:text="Add Wallet Value"
+                        android:textSize="15sp"
+                        app:cornerRadius="15dp" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/AddItemProfile"
@@ -103,22 +226,69 @@
                     android:textSize="15dp"
                     app:cornerRadius="15dp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="3dp"
+                android:background="#FFFFFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:background="#FAF8F8">
 
                 <Button
-                    android:id="@+id/LogoutProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/LogoutGray"
-                    android:text="LogOut"
-                    android:textSize="15dp"
-                    app:cornerRadius="15dp" />
+                    android:id="@+id/userListings"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FAF8F8"
+                    android:text="My Listings"
+                    android:textColor="#000000"
+                    android:alpha="0.7"
+                    android:textSize="14sp"
+                    android:onClick="onButtonClick"
+                    app:cornerRadius="0dp"/>
 
-            </RelativeLayout>
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/userRentedOut"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FAF8F8"
+                    android:text="Rented Out"
+                    android:textColor="#000000"
+                    android:alpha="0.7"
+                    android:textSize="14sp"
+                    android:onClick="onButtonClick"
+                    app:cornerRadius="0dp"/>
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/userRentals"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FAF8F8"
+                    android:text="My Rentals"
+                    android:alpha="0.7"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:onClick="onButtonClick"
+                    app:cornerRadius="0dp"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
