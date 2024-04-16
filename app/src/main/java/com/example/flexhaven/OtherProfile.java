@@ -64,14 +64,8 @@ public class OtherProfile extends AppCompatActivity {
 
         // Get user Tier and user Points from currentUser user object
         TextView userTierPoints = findViewById(R.id.otherTierPointsTextView);
-        int currentUserPoints = currentUser.userPoints;
-        if (currentUser!=null){
-            userTierPoints.setText(currentUserPoints + " Points");
-        }
-
         if (currentUser != null) {
             currentUser.computeTier();
-            Drawable tierIcon;
             switch (currentUser.userTier) {
                 case "Bronze":
                     tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
@@ -88,7 +82,38 @@ public class OtherProfile extends AppCompatActivity {
                 default:
                     tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
             }
-            userTierPoints.setCompoundDrawablesRelativeWithIntrinsicBounds(tierIcon, null, null, null);
+            userTierPoints.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, tierIcon, null);
+        }
+        int currentUserPoints = currentUser.userPoints;
+        if (currentUser!=null){
+            userTierPoints.setText("Buyer: " + currentUserPoints + " Points" + "  |  " + currentUser.userTier);
+        }
+
+        // Get seller Tier and seller Points from currentUser user object
+        TextView sellerTierPoints = findViewById(R.id.othersellerTierPointsTextView);
+        if (currentUser != null) {
+            currentUser.computeSellerTier();
+            switch (currentUser.sellerTier) {
+                case "Bronze":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
+                    break;
+                case "Silver":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_silver_icon);
+                    break;
+                case "Gold":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_gold_icon);
+                    break;
+                case "Platinum":
+                    tierIcon = getResources().getDrawable(R.drawable.tier_platinum_icon);
+                    break;
+                default:
+                    tierIcon = getResources().getDrawable(R.drawable.tier_bronze_icon);
+            }
+            sellerTierPoints.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, tierIcon, null);
+        }
+        int sellerUserPoints = currentUser.sellerPoints;
+        if (currentUser!=null){
+            sellerTierPoints.setText("Seller: " + sellerUserPoints + " Points" + "  |  " + currentUser.sellerTier);
         }
 
         // Get user email from currentUser user object
@@ -148,7 +173,8 @@ public class OtherProfile extends AppCompatActivity {
                     Item item = itemSnapshot.getValue(Item.class);
 
                     // Check if the item owner's email matches the current user's email
-                    if (item != null && item.getOwner().email.equals(currentUserEmail)) {
+                    // and if the rental status is not equal to 1 (1 represents rented)
+                    if (item != null && item.getOwner().email.equals(currentUserEmail) && item.getRentalStatus().rentalStatus != 1) {
                         // Add the item to the list of user items
                         userItems.add(item);
                     }
