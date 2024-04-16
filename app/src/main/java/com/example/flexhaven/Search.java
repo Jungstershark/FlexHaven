@@ -126,10 +126,10 @@ public class Search extends AppCompatActivity {
                     Item item = itemSnapshot.getValue(Item.class);
 
                     if (item != null) {
-                        if (categoriesToSearch.isEmpty()) {
+                        if (categoriesToSearch.isEmpty() && item.getRentalStatus().rentalStatus != 1) {
                             priorityQueue.offer(item);
                         } else {
-                            if (item.category != null && !item.category.isEmpty()) {
+                            if (item.category != null && !item.category.isEmpty() && item.getRentalStatus().rentalStatus != 1) {
                                 for (String category : item.category) {
                                     if (categoriesToSearch.contains(category)) {
                                         priorityQueue.offer(item);
