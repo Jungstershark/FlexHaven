@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CommonData {
     private static CommonData instance;
     private int userPoints;
-    private String[] categories = {"Woman", "Men", "Accessories", "Electronics", "Shorts", "T-Shirts", "Jeans"};
+    private String[] categories = {"Woman", "Men", "Electronics", "Shorts", "T-Shirts", "Jeans"};
     private String searchBar = "";
     private ArrayList<String> categoriesToSearch;
     private ArrayList<Item> itemsToDisplay;
