@@ -8,8 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.flexhaven.helpers.CommonData;
+import com.example.flexhaven.helpers.Item;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FYP extends AppCompatActivity {
 
@@ -22,8 +33,37 @@ public class FYP extends AppCompatActivity {
         featuredButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newActivity = new Intent(getApplicationContext(),ItemDescription.class);
-                startActivity(newActivity);
+                // Retrieve the top 10 items from the database
+                DatabaseReference itemsRef = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Items");
+                Query query = itemsRef.orderByKey().limitToFirst(10);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<Item> itemList = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Item item = snapshot.getValue(Item.class);
+                            if (item != null && item.getRentalStatus().rentalStatus == 0) {
+                                itemList.add(item);
+                            }
+                        }
+
+                        if (!itemList.isEmpty()) {
+                            // Get the first item from the filtered list
+                            Item featuredItem = itemList.get(0);
+                            // Pass the user object and the retrieved item to the ItemDescription activity
+                            Intent intent = new Intent(getApplicationContext(), ItemDescription.class);
+                            intent.putExtra("ITEM_OBJECT", featuredItem);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(FYP.this, "No featured items found.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(FYP.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -63,6 +103,7 @@ public class FYP extends AppCompatActivity {
                 categories.add("Jeans");
                 categories.add("Shorts");
                 categories.add("T-Shirt");
+                categories.add("Electronics");
 
                 Intent newActivity = new Intent(getApplicationContext(), Listing.class);
                 newActivity.putStringArrayListExtra("CATEGORIES", categories);
