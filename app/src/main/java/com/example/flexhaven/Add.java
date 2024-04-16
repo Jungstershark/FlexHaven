@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.flexhaven.helpers.RentalStatus;
 import com.example.flexhaven.helpers.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.chip.Chip;
@@ -38,6 +39,7 @@ public class Add extends AppCompatActivity {
     private boolean uploadImageStatus = false;
     public String UriString;
     public User currentUser;
+    public RentalStatus rentalStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class Add extends AppCompatActivity {
 
         // Get current user object
         currentUser = CommonData.getInstance().getCurrentUser();
+        rentalStatus = new RentalStatus("","", 0);
 
         Button addItemNextButton = findViewById(R.id.addItemFinished);
         imageView = findViewById(R.id.addImageButton);
@@ -111,13 +114,14 @@ public class Add extends AppCompatActivity {
             public void onClick(View v) {
                 //when button clicked, get values
                 String email = CommonData.getInstance().getCurrentUser().email;
+                String username = CommonData.getInstance().getCurrentUser().username;
                 String itemName = itemNameEditText.getText().toString().trim();
                 String condition = conditionEditText.getText().toString().trim();
                 String price = priceEditText.getText().toString().trim();
                 String location = locationEditText.getText().toString();
                 String itemDescription = itemDescriptionEditText.getText().toString();
                 //use private method to place values into firebase
-                saveItemDetailsToFirebase(email, itemName, selectedCategoriesList, condition, price, location, itemDescription, imageUri);
+                saveItemDetailsToFirebase(email, username, itemName, selectedCategoriesList, condition, price, location, itemDescription, imageUri, currentUser, rentalStatus);
             }
         });
 
@@ -145,7 +149,7 @@ public class Add extends AppCompatActivity {
 
 
     //method to handle new user input
-    private void saveItemDetailsToFirebase(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, Uri imageUri){
+    private void saveItemDetailsToFirebase(String email, String username, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, Uri imageUri, User currentUser, RentalStatus rentalStatus){
 
         // get a reference to the Firebase Realtime Database
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://infosys-37941-default-rtdb.asia-southeast1.firebasedatabase.app/");
@@ -165,7 +169,7 @@ public class Add extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             UriString = uri.toString();
-                            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, UriString, currentUser);
+                            Item item = new Item(email, username, itemName, category, condition, price, location, itemDescription, UriString, currentUser, rentalStatus);
 
                             // save the user details under their unique ID
                             if (userId != null) {
@@ -190,7 +194,7 @@ public class Add extends AppCompatActivity {
             });
         }
         else {
-            Item item = new Item(email, itemName, category, condition, price, location, itemDescription, "", currentUser);
+            Item item = new Item(email, username, itemName, category, condition, price, location, itemDescription, "", currentUser, rentalStatus);
 
             // save the user details under their unique ID
             if (userId != null) {
