@@ -5,19 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Item implements Serializable {
-    public String userEmail;
+    public String userEmail, userUsername;
     public String name;
     public ArrayList<String> category;
-    public String condition, location, itemDescription, price, imageUrl;
+    public String itemKey, condition, location, itemDescription, price, imageUrl;
     private User owner;
+    private RentalStatus rentalStatus;
 
     // Default constructor is needed for Firebase
     public Item() {
     }
 
     // Constructor
-    public Item(String email, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, String uriString, User owner) {
+    public Item(String email, String username, String itemName, ArrayList<String> category, String condition, String price, String location, String itemDescription, String uriString, User owner, RentalStatus rentalStatus) {
         this.userEmail = email;
+        this.userUsername = username;
         this.name = itemName;
         this.category = category;
         this.condition = condition;
@@ -25,7 +27,10 @@ public class Item implements Serializable {
         this.location = location;
         this.itemDescription = itemDescription;
         this.imageUrl = uriString;
+
+        this.itemKey = itemName + "_" + email + "_" + username + "_" + itemDescription;
         this.owner = owner;
+        this.rentalStatus = rentalStatus;
     }
     public String getImageUrl() {
         return imageUrl;
@@ -40,5 +45,13 @@ public class Item implements Serializable {
     }
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public RentalStatus getRentalStatus() {
+        return rentalStatus;
+    }
+
+    public void setRentalStatus(RentalStatus rentalStatus) {
+        this.rentalStatus = rentalStatus;
     }
 }
