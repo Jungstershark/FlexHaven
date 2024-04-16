@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class User implements Serializable {
-    public int userPoints, sellerPoints;
-    public BigDecimal userWallet;
-    public String username, email, phoneNumber, password, userTier, imageUrl, sellerTier;
+    public int userPoints, sellerPoints, userWallet;
+    public String userKey, username, email, phoneNumber, password, userTier, imageUrl, sellerTier;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
@@ -17,12 +16,13 @@ public class User implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.userPoints = 0;
-        this.userTier = " ";
-        this.sellerPoints = 0;
-        this.sellerTier = " ";
+        this.userPoints = 20;
+        this.userTier = "";
+        this.sellerPoints = 20;
+        this.sellerTier = "";
         this.imageUrl = imageUrl;
-        this.userWallet = new BigDecimal(0);
+        this.userWallet = 0;
+        this.userKey = username + "_" + email;
     }
 
     public void computeTier(){
@@ -37,6 +37,20 @@ public class User implements Serializable {
         }
         else{
             this.userTier = "Platinum";
+        }
+    }
+    public void computeSellerTier(){
+        if (this.sellerPoints<250){
+            this.sellerTier = "Bronze";
+        }
+        else if ((this.sellerPoints>=250)&&(this.sellerPoints<750)){
+            this.sellerTier = "Silver";
+        }
+        else if ((this.sellerPoints>=750)&&(this.sellerPoints<1500)){
+            this.sellerTier = "Gold";
+        }
+        else{
+            this.sellerTier = "Platinum";
         }
     }
 }
