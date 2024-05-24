@@ -57,7 +57,7 @@ Here are some additional resources that provide more insight into Flexhaven:
 
 ## Contact
 
-- Project Link: [https://github.com/yourusername/flexhaven](https://github.com/yourusername/flexhaven)
+- Project Link: [https://github.com/Jungstershark/FlexHaven](https://github.com/Jungstershark/FlexHaven)
 
 Thank you for exploring Flexhaven, and we appreciate your interest in supporting affordable and sustainable living solutions!
 
